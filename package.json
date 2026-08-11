@@ -1,27 +1,23 @@
 {
   "name": "muchlis-portfolio",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
-  "engines": {
-    "node": ">=22.12.0"
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "firebase": "^12.1.0",
     "lucide-react": "^0.468.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.48.0",
-    "@vitejs/plugin-react": "^6.0.4",
-    "vite": "^8.1.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^7.1.0",
     "wrangler": "^4.115.0"
   }
 }

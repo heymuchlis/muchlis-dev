@@ -69,23 +69,13 @@ git push -u origin main
 ```
 
 
-## Cloudflare Workers (current setup)
+## Cloudflare Workers Static Assets
 
-This project uses the official Cloudflare Vite plugin and Workers Static Assets.
+This is intentionally configured as a static React SPA on Workers.
 
-Build:
-```bash
-npm run build
-```
-
-Deploy:
-```bash
-npm run deploy
-```
-
-For Cloudflare Workers Builds:
+Workers Builds:
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
 - Path: `/`
 
-The React SPA fallback is configured in `wrangler.jsonc`.
+`wrangler.jsonc` explicitly serves `./dist` and enables SPA fallback.
