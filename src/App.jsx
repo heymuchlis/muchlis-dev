@@ -1,18 +1,23 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
+  CheckCircle2,
   Code2,
   Github,
   Globe2,
+  LoaderCircle,
   Mail,
   Menu,
   MessageCircle,
   Moon,
+  Send,
   Sparkles,
   X,
   Zap
 } from "lucide-react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "./firebase";
 
 const projects = [
   {
@@ -64,10 +69,38 @@ function SectionTitle({ eyebrow, title, text }) {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const year = useMemo(() => new Date().getFullYear(), []);
+  const [form, setForm] = useState({ name: "", message: "" });
+  const [status, setStatus] = useState("idle");
 
   const closeMenu = () => setMenuOpen(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const name = form.name.trim();
+    const message = form.message.trim();
+
+    if (name.length < 2 || message.length < 2) {
+      setStatus("invalid");
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      await addDoc(collection(db, "guestbook"), {
+        name,
+        message,
+        createdAt: serverTimestamp()
+      });
+
+      setForm({ name: "", message: "" });
+      setStatus("success");
+    } catch (error) {
+      console.error("Firestore submit failed:", error);
+      setStatus("error");
+    }
+  };
 
   return (
     <div className="site-shell">
@@ -77,7 +110,9 @@ export default function App() {
         <nav className="nav container">
           <a className="brand" href="#top" onClick={closeMenu}>
             <span className="brand-mark">M</span>
-            <span>muchlis<span className="brand-dot">.dev</span></span>
+            <span>
+              muchlis<span className="brand-dot">.dev</span>
+            </span>
           </a>
 
           <button
@@ -131,7 +166,12 @@ export default function App() {
                 Explore projects
                 <ArrowUpRight size={17} />
               </a>
-              <a className="button ghost" href="https://github.com/heymuchlis" target="_blank" rel="noreferrer">
+              <a
+                className="button ghost"
+                href="https://github.com/heymuchlis"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Github size={17} />
                 GitHub
               </a>
@@ -170,7 +210,7 @@ export default function App() {
 };`}</pre>
               <div className="code-footer">
                 <span><Zap size={13} /> live on Cloudflare</span>
-                <span>v1.1.0</span>
+                <span>v1.2.0</span>
               </div>
             </div>
           </div>
@@ -243,7 +283,11 @@ export default function App() {
                 <div className="tag-row">
                   {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
-                <a href={project.href} target={project.href !== "#" ? "_blank" : undefined} rel="noreferrer">
+                <a
+                  href={project.href}
+                  target={project.href !== "#" ? "_blank" : undefined}
+                  rel="noreferrer"
+                >
                   View project <ArrowUpRight size={16} />
                 </a>
               </article>
@@ -252,24 +296,98 @@ export default function App() {
         </section>
 
         <section id="contact" className="contact-section">
-          <div className="container contact-card">
-            <div>
+          <div className="container contact-card contact-layout">
+            <div className="contact-copy">
               <span className="eyebrow">04 / CONTACT</span>
               <h2>Have an idea?</h2>
-              <p>Let's turn it into something real.</p>
+              <p>Drop a message. It will land safely in the Firebase guestbook.</p>
+
+              {status === "success" && (
+                <div className="form-status success">
+                  <CheckCircle2 size={17} />
+                  Message saved. Thanks bro! 🚀
+                </div>
+              )}
+
+              {status === "error" && (
+                <div className="form-status error">
+                  <MessageCircle size={17} />
+                  Failed to save. Check Firestore rules and try again.
+                </div>
+              )}
+
+              {status === "invalid" && (
+                <div className="form-status error">
+                  <MessageCircle size={17} />
+                  Name and message must contain at least 2 characters.
+                </div>
+              )}
             </div>
-            <a className="button primary" href="mailto:hello@muchlis.dev">
-              <Mail size={17} />
-              Say hello
-            </a>
+
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <label>
+                <span>Name</span>
+                <input
+                  value={form.name}
+                  onChange={(event) => {
+                    setStatus("idle");
+                    setForm((current) => ({ ...current, name: event.target.value }));
+                  }}
+                  maxLength={80}
+                  placeholder="Your name"
+                  autoComplete="name"
+                  required
+                />
+              </label>
+
+              <label>
+                <span>Message</span>
+                <textarea
+                  value={form.message}
+                  onChange={(event) => {
+                    setStatus("idle");
+                    setForm((current) => ({ ...current, message: event.target.value }));
+                  }}
+                  maxLength={500}
+                  rows={5}
+                  placeholder="Say something..."
+                  required
+                />
+              </label>
+
+              <button
+                className="button primary submit-button"
+                type="submit"
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? (
+                  <>
+                    <LoaderCircle className="spin" size={17} />
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <Send size={17} />
+                    Send message
+                  </>
+                )}
+              </button>
+
+              <p className="privacy-note">
+                <Mail size={14} />
+                No public read access. Messages are write-only from this site.
+              </p>
+            </form>
           </div>
         </section>
       </main>
 
       <footer className="footer container">
-        <span>© {year} Muchlis. Built with curiosity.</span>
+        <span>© {new Date().getFullYear()} Muchlis. Built with curiosity.</span>
         <div>
-          <a href="https://github.com/heymuchlis" target="_blank" rel="noreferrer"><Github size={16} /></a>
+          <a href="https://github.com/heymuchlis" target="_blank" rel="noreferrer">
+            <Github size={16} />
+          </a>
           <a href="mailto:hello@muchlis.dev"><MessageCircle size={16} /></a>
           <Moon size={15} />
         </div>

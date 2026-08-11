@@ -2,16 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyDrOBKd0Yhx2GhwUUlEnqJI1tH7MsfxvDw",
+  authDomain: "muchlisdev.firebaseapp.com",
+  projectId: "muchlisdev",
+  storageBucket: "muchlisdev.firebasestorage.app",
+  messagingSenderId: "1089654573107",
+  appId: "1:1089654573107:web:de8f0f5b31a3e98cdb3b46"
 };
 
-const hasConfig = Object.values(firebaseConfig).every(Boolean);
+const app = initializeApp(firebaseConfig);
 
-export const db = hasConfig
-  ? getFirestore(initializeApp(firebaseConfig))
-  : null;
+export const db = getFirestore(app);

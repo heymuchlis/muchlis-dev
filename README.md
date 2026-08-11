@@ -6,6 +6,16 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 
 ## 🚀 Development Progress
 
+### v1.2.0 — Firebase Guestbook
+- 🔥 Firebase Web SDK connected
+- 🗄️ Firestore guestbook integration
+- 📬 Contact / guestbook form
+- ✍️ Write-only message flow from the website
+- 🔒 Firestore rules deny public reads, updates and deletes
+- ⏳ Loading, success and error states
+- 📝 Version/changelog updated
+- ☁️ Keeps Cloudflare Workers Static Assets deployment
+
 ### v1.1.0 — Portfolio UI
 - ✨ Redesigned portfolio interface
 - 🌑 Modern dark + green visual identity
@@ -37,8 +47,9 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 - [x] GitHub integration
 - [x] Cloudflare deployment
 - [x] Portfolio UI v1.1
-- [ ] Firebase Firestore
-- [ ] Contact / guestbook
+- [x] Firebase Firestore
+- [x] Contact / guestbook
+- [ ] Firebase App Check / anti-spam hardening
 - [ ] GitHub API integration
 - [ ] Analytics
 - [ ] Telegram notifications
@@ -50,7 +61,7 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 
 - React
 - Vite
-- Firebase
+- Firebase Firestore
 - Cloudflare Workers Static Assets
 - GitHub
 
@@ -74,3 +85,14 @@ Cloudflare Workers Builds:
 - Root directory: `/`
 
 > Wrangler is intentionally not listed in `package.json`; Cloudflare's deploy command provides it through `npx`.
+
+## 🔐 Firebase notes
+
+The browser uses the Firebase Web SDK configuration. This config is designed to be present in client-side code.
+
+Firestore rules are intentionally write-only for the public guestbook:
+- public read: denied
+- create: allowed only for valid `name`, `message`, and `createdAt`
+- update/delete: denied
+
+Do not add Firebase Admin SDK credentials or service-account private keys to this repository.
