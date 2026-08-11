@@ -67,3 +67,25 @@ git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/muchlis-portfolio.git
 git push -u origin main
 ```
+
+
+## Cloudflare Workers (current setup)
+
+This project uses the official Cloudflare Vite plugin and Workers Static Assets.
+
+Build:
+```bash
+npm run build
+```
+
+Deploy:
+```bash
+npm run deploy
+```
+
+For Cloudflare Workers Builds:
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Path: `/`
+
+The React SPA fallback is configured in `wrangler.jsonc`.
