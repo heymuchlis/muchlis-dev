@@ -1,13 +1,12 @@
 {
   "name": "muchlis-portfolio",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && wrangler deploy"
+    "preview": "vite preview"
   },
   "dependencies": {
     "firebase": "^12.1.0",
@@ -17,7 +16,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^7.1.0",
-    "wrangler": "^4.115.0"
+    "vite": "^7.1.0"
   }
 }

@@ -1,0 +1,2 @@
+muchlis-dev Cloudflare fix v1.0.2
+Fix: removed Wrangler from package.json to avoid Bun/miniflare dependency resolution failure.

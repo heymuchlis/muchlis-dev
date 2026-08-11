@@ -1,4 +1,4 @@
-# Muchlis Portfolio Built with ❤️ by Muchlis
+# Muchlis Portfolio
 
 A modern personal developer portfolio built with React + Vite, Firebase and Cloudflare Pages.
 
@@ -69,13 +69,14 @@ git push -u origin main
 ```
 
 
-## Cloudflare Workers Static Assets
+## Cloudflare Workers build
 
-This is intentionally configured as a static React SPA on Workers.
+This project is configured for Cloudflare Workers Static Assets.
 
-Workers Builds:
+Cloudflare Workers Builds:
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
-- Path: `/`
+- Root directory: `/`
 
-`wrangler.jsonc` explicitly serves `./dist` and enables SPA fallback.
+Important: Wrangler is intentionally NOT listed in `package.json`.
+Cloudflare's deploy command uses `npx wrangler`, avoiding an app-level Wrangler/Miniflare dependency conflict during `bun install`.
