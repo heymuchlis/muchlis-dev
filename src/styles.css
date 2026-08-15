@@ -44,7 +44,9 @@ button, input, textarea { font: inherit; }
 .nav-links { display: flex; gap: 28px; align-items: center; color: #a9b8b1; font-size: 14px; }
 .nav-links a { transition: color .2s ease; }
 .nav-links a:hover { color: var(--accent); }
-.nav-github { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 9px; color: var(--text) !important; }
+.nav-admin, .nav-github { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 9px; color: var(--text) !important; }
+.nav-admin { color: var(--accent) !important; background: rgba(125,255,178,.035); }
+.nav-admin:hover { border-color: rgba(125,255,178,.35); }
 .menu-toggle { display: none; background: transparent; color: var(--text); border: 0; cursor: pointer; }
 
 .hero {

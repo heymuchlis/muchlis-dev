@@ -6,6 +6,12 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 
 ## 🚀 Development Progress
 
+### v1.3.1 — Admin Entry Point
+- 🔐 Added visible **Admin** link to the main navigation
+- 👤 `/admin` now has a clear sign-in entry point
+- 🔒 Firestore admin read access locked to `heymuchlis@gmail.com`
+- 📝 Version/changelog updated
+
 ### v1.3.0 — Admin Guestbook Foundation
 - 🔐 Firebase Authentication email/password login foundation
 - 🛡️ `/admin` private dashboard route

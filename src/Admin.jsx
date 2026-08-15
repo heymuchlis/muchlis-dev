@@ -120,7 +120,7 @@ export default function Admin() {
         ) : !user ? (
           <form className="admin-card admin-form" onSubmit={login}>
             <h2>Sign in</h2>
-            <p>Use the Firebase Authentication admin account.</p>
+            <p>Sign in with the Firebase Authentication admin account.</p>
             <label>
               <span>Email</span>
               <input

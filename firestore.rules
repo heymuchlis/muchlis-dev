@@ -22,7 +22,7 @@ service cloud.firestore {
       // Replace the placeholder with the exact Firebase Auth admin email.
       allow read: if request.auth != null &&
         request.auth.token.email_verified == true &&
-        request.auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL';
+        request.auth.token.email == 'heymuchlis@gmail.com';
 
       allow update, delete: if false;
     }

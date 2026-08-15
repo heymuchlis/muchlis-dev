@@ -1,0 +1,2 @@
+muchlis.dev v1.3.1
+Added visible Admin link and locked Firestore admin read access to heymuchlis@gmail.com.

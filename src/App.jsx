@@ -7,6 +7,7 @@ import {
   Github,
   Globe2,
   LoaderCircle,
+  LockKeyhole,
   Mail,
   Menu,
   MessageCircle,
@@ -129,6 +130,10 @@ export default function App() {
             <a href="#skills" onClick={closeMenu}>Skills</a>
             <a href="#projects" onClick={closeMenu}>Projects</a>
             <a href="#contact" onClick={closeMenu}>Contact</a>
+            <a className="nav-admin" href="/admin" onClick={closeMenu}>
+              <LockKeyhole size={15} />
+              Admin
+            </a>
             <a
               className="nav-github"
               href="https://github.com/heymuchlis"
@@ -210,7 +215,7 @@ export default function App() {
 };`}</pre>
               <div className="code-footer">
                 <span><Zap size={13} /> live on Cloudflare</span>
-                <span>v1.2.0</span>
+                <span>v1.3.1</span>
               </div>
             </div>
           </div>
