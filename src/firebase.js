@@ -1,6 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
+import {
+  initializeAppCheck,
+  ReCaptchaEnterpriseProvider
+} from "firebase/app-check";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDrOBKd0Yhx2GhwUUlEnqJI1tH7MsfxvDw",
@@ -22,3 +26,4 @@ export const appCheck = initializeAppCheck(app, {
 });
 
 export const db = getFirestore(app);
+export const auth = getAuth(app);

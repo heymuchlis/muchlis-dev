@@ -6,6 +6,15 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 
 ## 🚀 Development Progress
 
+### v1.3.0 — Admin Guestbook Foundation
+- 🔐 Firebase Authentication email/password login foundation
+- 🛡️ `/admin` private dashboard route
+- 📬 Admin message list with latest 50 guestbook entries
+- ✅ Email verification check
+- 🚪 Admin sign-out and session handling
+- 🔒 Firestore read access remains denied until the exact admin email is placed in `firestore.rules`
+- 📝 README changelog updated
+
 ### v1.2.1 — Firebase App Check
 - 🛡️ Firebase App Check registered for the web app
 - 🤖 reCAPTCHA Enterprise provider integrated
@@ -57,6 +66,7 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 - [x] Firebase Firestore
 - [x] Contact / guestbook
 - [x] Firebase App Check registration + client integration
+- [x] Admin Authentication foundation
 - [ ] Firebase App Check / anti-spam hardening
 - [ ] GitHub API integration
 - [ ] Analytics
@@ -72,6 +82,16 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 - Firebase Firestore
 - Cloudflare Workers Static Assets
 - GitHub
+
+## Admin setup
+
+1. In Firebase Console, enable **Authentication → Sign-in method → Email/Password**.
+2. Create one admin user in **Authentication → Users**.
+3. Verify the admin email.
+4. Replace `REPLACE_WITH_ADMIN_EMAIL` in `firestore.rules` with that exact verified email, then Publish the rules.
+5. Open `https://muchlis-dev.heymuchlis.workers.dev/admin` and sign in.
+
+The admin page uses Firebase Authentication for identity and Firestore Rules for authorization. A signed-in user is not automatically granted guestbook read access; the rule must match the verified admin email. Firebase recommends using Authentication together with Security Rules for user/role-based access control.
 
 ## Development
 

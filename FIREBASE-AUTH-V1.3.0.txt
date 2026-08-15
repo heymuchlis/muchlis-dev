@@ -1,0 +1,3 @@
+muchlis.dev v1.3.0
+Firebase Authentication admin dashboard foundation.
+Public guestbook remains write-only until the verified admin email is placed in firestore.rules.
