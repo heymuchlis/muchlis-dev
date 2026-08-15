@@ -6,6 +6,14 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 
 ## 🚀 Development Progress
 
+### v1.3.2 — Admin Firestore Access Fix
+- 🔐 Admin read access restricted to `heymuchlis@gmail.com`
+- ✅ Requires verified Firebase Authentication email
+- 🔄 Admin refreshes Auth user/token before reading Firestore
+- 📬 Guestbook remains public-create / private-read
+- 🚫 Update/delete remain disabled
+
+
 ### v1.3.1 — Admin Entry Point
 - 🔐 Added visible **Admin** link to the main navigation
 - 👤 `/admin` now has a clear sign-in entry point

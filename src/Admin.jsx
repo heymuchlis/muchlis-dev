@@ -12,7 +12,8 @@ import {
   onAuthStateChanged,
   sendEmailVerification,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  reload
 } from "firebase/auth";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { auth, db } from "./firebase";
@@ -40,6 +41,13 @@ export default function Admin() {
     setLoadingMessages(true);
     setStatus("");
     try {
+      if (!auth.currentUser) throw new Error("Not authenticated");
+      await reload(auth.currentUser);
+      if (!auth.currentUser.emailVerified) {
+        setStatus("Email admin belum terverifikasi. Verifikasi dulu lalu login ulang.");
+        return;
+      }
+      await auth.currentUser.getIdToken(true);
       const q = query(
         collection(db, "guestbook"),
         orderBy("createdAt", "desc"),
@@ -56,7 +64,7 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    if (user?.emailVerified) loadMessages();
+    if (user) loadMessages();
   }, [user]);
 
   const login = async (event) => {
@@ -65,6 +73,8 @@ export default function Admin() {
     setStatus("");
     try {
       const credential = await signInWithEmailAndPassword(auth, email.trim(), password);
+      await reload(credential.user);
+      await credential.user.getIdToken(true);
       if (!credential.user.emailVerified) {
         setStatus("Email admin belum terverifikasi. Kirim verification email lalu login kembali.");
       }

@@ -1,0 +1,1 @@
+Admin email: heymuchlis@gmail.com; verified email required; client refreshes auth token before Firestore read.
