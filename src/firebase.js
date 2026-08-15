@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "firebase/app-check";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -10,6 +11,14 @@ const firebaseConfig = {
   appId: "1:1089654573107:web:de8f0f5b31a3e98cdb3b46"
 };
 
+const RECAPTCHA_ENTERPRISE_SITE_KEY =
+  "6LepX4ctAAAAANjpZvSb5pSeTXqWC4bCm6HtW0TW";
+
 const app = initializeApp(firebaseConfig);
+
+export const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider(RECAPTCHA_ENTERPRISE_SITE_KEY),
+  isTokenAutoRefreshEnabled: true
+});
 
 export const db = getFirestore(app);

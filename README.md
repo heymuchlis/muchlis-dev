@@ -6,6 +6,13 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 
 ## 🚀 Development Progress
 
+### v1.2.1 — Firebase App Check
+- 🛡️ Firebase App Check registered for the web app
+- 🤖 reCAPTCHA Enterprise provider integrated
+- 🔄 App Check token auto-refresh enabled
+- ☁️ Compatible with Cloudflare Workers Static Assets
+- ⚠️ Enforcement intentionally left OFF until production validation
+
 ### v1.2.0 — Firebase Guestbook
 - 🔥 Firebase Web SDK connected
 - 🗄️ Firestore guestbook integration
@@ -49,6 +56,7 @@ Live: https://muchlis-dev.heymuchlis.workers.dev/
 - [x] Portfolio UI v1.1
 - [x] Firebase Firestore
 - [x] Contact / guestbook
+- [x] Firebase App Check registration + client integration
 - [ ] Firebase App Check / anti-spam hardening
 - [ ] GitHub API integration
 - [ ] Analytics

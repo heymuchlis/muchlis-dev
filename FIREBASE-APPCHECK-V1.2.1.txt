@@ -1,0 +1,3 @@
+muchlis.dev v1.2.1
+Firebase App Check with reCAPTCHA Enterprise enabled in client code.
+Enforcement remains OFF until the live deployment is verified.

@@ -1,1 +1,1 @@
-muchlis.dev v1.2.0
+muchlis.dev v1.2.1
